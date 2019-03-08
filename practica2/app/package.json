@@ -9,6 +9,7 @@
   "author": "Daniel",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "jade": "^1.11.0",
     "path": "^0.12.7",
