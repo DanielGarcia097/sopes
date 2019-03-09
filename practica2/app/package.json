@@ -11,8 +11,12 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "fs": "0.0.1-security",
     "jade": "^1.11.0",
+    "node-ps": "0.0.2",
     "path": "^0.12.7",
+    "pidusage": "^2.0.17",
+    "ps-node": "^0.1.6",
     "stylus": "^0.54.5"
   }
 }
