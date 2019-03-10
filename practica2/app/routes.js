@@ -123,16 +123,21 @@ getProcessData = function () {
 }
 
 var cpuStats = require('cpu-stats');
- 
+
 // the first argument is how long to sample for in ms.
 // longer is more accurate but, you know, longer.
 // if omitted, defaults to one second.
 //setInterval( function () {
-cpuStats(1000, function(error, result) {
-  if(error) return console.error('Oh noes!', error) // actually this will never happen
-  console.log(typeof result);
-  console.log(JSON.stringify(result));
-  //console.info("CPU: "+result);
+cpuStats(1000, function (error, result) {
+    if (error) return console.error('Oh noes!', error) // actually this will never happen
+    console.log(typeof result);
+    var obj = JSON.stringify(result);
+    for (var key in obj) {
+        for (var innerKey in obj[key]) {
+            console.log("Key: " + innerKey + " value: " + obj[key][innerKey]);
+        }
+    }
+    //console.info("CPU: "+result);
 });
 //},1000);
 
@@ -181,8 +186,8 @@ setInterval(function () {
 
 router.get("/CPU", function (req, res) {
 
-        res.render("cpuinfo");
-    });
+    res.render("cpuinfo");
+});
 
 
 
