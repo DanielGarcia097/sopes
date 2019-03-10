@@ -21,7 +21,7 @@ router.post("/login", function (req, res) {
 
     if (req.body.email == "admin@admin.com" && req.body.password == 123) {
         getProcessData();
-        res.render("dashboard", { data1: info_pocess });
+        res.render("dashboard", { data1: estados_cant });
     } else {
         res.render("index");
     }
@@ -92,15 +92,14 @@ function getProcessData() {
                     var elems = data.toString().split(' ');
                     var memoria = elems[1];
                     console.log(file + " Cantidad memoria: " + memoria + "Porcentaje: " + memoria / 10000 + "%");
-                });
-
-                /**
+		    
+		   /**
                   * Almacenamiento de información en arraylist:
                   * id, user, state, %RAM, name
                   */
                 
-                info_mem.push(memoria / 10000 + "%");
-                
+                   info_mem.push(memoria / 10000 + "%");
+                });                
 
             }
         });
