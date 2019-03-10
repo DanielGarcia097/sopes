@@ -15,7 +15,6 @@ const path = require('path');
 
 var bodyParser = require('body-parser')
 
-
 app.set("view engine", "jade"); //definicion del motor de vistas
 
 app.get("/login", function (req, res) {
