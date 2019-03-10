@@ -18,23 +18,27 @@ router.post("/login", function (req, res) {
 
     // res.send("Hola Mundo.");
     console.log(req.body.email);
-
     if (req.body.email == "admin@admin.com" && req.body.password == 123) {
         getProcessData();
+	getPrint();
+        console.log("ESTADOS -......................................"+estados_cant[0]);
         res.render("dashboard", { data1: estados_cant });
     } else {
         res.render("index");
     }
 });
 
+function getPrint(){
+	console.log("ESTADOS----------------------------------------+"+estados_cant[0]);
+}
 
-function getProcessData() {
-    fs.readdir(testFolder, (err, files) => {
+getProcessData = function() {
+    files = fs.readdirSync(testFolder);
         files.forEach(file => {
             if (!isNaN(file)) {
                 var pid = file;
                 file = testFolder + file;
-                fs.readFile(file + "/status", function (err, data) {
+                fs.readFileSync(file + "/status");
                     info_pocess = new Array();
                     /**
                      * Información extraída del archivo /status
@@ -82,13 +86,12 @@ function getProcessData() {
                     info_pocess.push(state[0]);
                     info_pocess.push(name[1]);
 
-                });
 
                 /**
                  * Lectura del porcentaje de memoria utilizada por un proceso en el archivo /statm
                  */
 
-                fs.readFile(file + "/statm", function (err, data) {
+                fs.readFileSync(file + "/statm");
                     var elems = data.toString().split(' ');
                     var memoria = elems[1];
                     console.log(file + " Cantidad memoria: " + memoria + "Porcentaje: " + memoria / 10000 + "%");
@@ -99,12 +102,9 @@ function getProcessData() {
                   */
                 
                    info_mem.push(memoria / 10000 + "%");
-                });                
-
-            }
-        });
-
-    });
+                
+		}
+            });
 }
 
 
