@@ -15,6 +15,8 @@ const path = require('path');
 
 var bodyParser = require('body-parser')
 
+var userid = require('userid');
+
 const fs = require('fs');
 
 app.set("view engine","jade"); //definicion del motor de vistas
@@ -50,21 +52,25 @@ fs.readdir(testFolder, (err, files) => {
   files.forEach(file => {
     if(!isNaN(file)){
        file = testFolder+file;
-       fs.readFile(file+"/stat",function(err,data){
-	    var informacion = data.toString();
-            var elems = data.toString().split(' ');
+       fs.readFile(file+"/status",function(err,data){
+            var elems = data.toString().split('\n');
 	    var estado = elems[2];
-		console.log(estado);
+	    var user = elems[8];
+ 	    var state = estado.split('	')[1].split(' ');
+            var id_user = user.split('	');
+            console.log("uid name is:", userid.username(parseInt(id_user[1])));	
+	    console.log(id_user[1]);
+ 	    
 
-		if(estado == "S"){
+		if(state[0] == "S"){
 			suspendido +=1;
-		}else if(estado == "I"){
+		}else if(state[0] == "I"){
 			ocioso += 1;
-		}else if(estado == "T"){
+		}else if(state[0] == "T"){
 			detenido +=1;
-		}else if(estado == "R"){
+		}else if(state[0] == "R"){
 			corriendo +=1;
-		}else if(estado == "Z"){
+		}else if(state[0] == "Z"){
 			zombie +=1;
 		}
 		
