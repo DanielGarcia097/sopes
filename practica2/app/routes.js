@@ -122,7 +122,19 @@ getProcessData = function () {
     }
 }
 
-var cpuStat = require('cpu-stat');
+var cpuStats = require('cpu-stats');
+ 
+// the first argument is how long to sample for in ms.
+// longer is more accurate but, you know, longer.
+// if omitted, defaults to one second.
+cpuStats(1000, function(error, result) {
+  if(error) return console.error('Oh noes!', error) // actually this will never happen
+ 
+  console.info(result)
+});
+
+
+/*var cpuStat = require('cpu-stat');
 
 setInterval(function () {
 cpuStat.usagePercent(function(err, percent, result) {
@@ -138,6 +150,11 @@ cpuStat.usagePercent(function(err, percent, result) {
 });
 
 },1000);
+*/
+
+
+
+
 
 /*var cpus = os.cpus();
 
