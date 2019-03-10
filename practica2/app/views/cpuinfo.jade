@@ -322,6 +322,16 @@ html(lang='en')
                   .au-card.m-b-30
                     .au-card-inner
                       h3.title-2.m-b-40 #{uso_cpu}
+                      script.
+                        function update(){
+                            $.ajax({
+                            url: '/',
+                            type: 'POST',
+                            }).done(function (data) {
+                                    console.log(data);
+                                });
+                        }
+                        setInterval(update, 1000);
                       canvas#sales-chart
                 .col-lg-6
                   .au-card.m-b-30
