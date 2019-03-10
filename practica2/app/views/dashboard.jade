@@ -331,8 +331,9 @@ html(lang='en')
                     button.au-btn.au-btn-icon.au-btn--blue
                       i.zmdi.zmdi-plus
                       | add item
-	      .row.m-t-25
-                .col-sm-6.col-lg-3
+
+		.row.m-t-25
+                 .col-sm-6.col-lg-3
                   .overview-item.overview-item--c1
                     .overview__inner
                       .overview-box.clearfix
@@ -341,12 +342,13 @@ html(lang='en')
                         .text
                           h2 info process
 			  ul.navbar-mobile-sub__list.list-unstyled.js-sub-list
-		          - for (var i = 0; i <= data2.length -1; i++)             
-                          	li
-                          		p #{data1[i]}
-                      
-              .row.m-t-25
-                .col-sm-6.col-lg-3
+		          - for (var i = 0; i <= data2.length -1; i++)
+                            - var arreglo = data2[i];
+                              -for (var j = 0; j <= arreglo.legth -1; j++)             
+                                li
+                                  h3 #{arreglo[j]}
+		.row.m-t-25
+                 .col-sm-6.col-lg-3
                   .overview-item.overview-item--c1
                     .overview__inner
                       .overview-box.clearfix
