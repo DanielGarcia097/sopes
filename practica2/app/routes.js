@@ -122,6 +122,7 @@ getProcessData = function () {
     }
 }
 
+var uso_cpu;
 var cpuStats = require('cpu-stats');
 
 setInterval( function () {
@@ -130,6 +131,7 @@ cpuStats(1000, function (error, result) {
 	console.log(result);
     console.log("%CPU: "+result[0].cpu);
     console.log("%Idle: "+result[0].idle);
+    uso_cpu = result[0].cpu;
 });
 },1000);
 
@@ -140,7 +142,7 @@ cpuStats(1000, function (error, result) {
 
 router.get("/CPU", function (req, res) {
 
-    res.render("cpuinfo");
+    res.render("cpuinfo", { uso_cpu: uso_cpu });
 });
 
 
