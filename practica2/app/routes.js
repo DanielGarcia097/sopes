@@ -135,7 +135,7 @@ var cpus = os.cpus();
 setInterval(function () {
     for (var i = 0, len = cpus.length; i < len; i++) {
         console.log("CPU %s:", i);
-        var cpu = cpus[i], total = 0;
+        var cpu = cpus[i], total = 0.000;
 
         for (var type in cpu.times) {
             total += cpu.times[type];
