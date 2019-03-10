@@ -130,6 +130,20 @@ os2.cpuUsage(function(v){
     console.log( 'CPU Usage (%): ' + v );
 });
 
+
+var usage = require('os-usage');
+
+// create an instance of CpuMonitor
+var cpuMonitor = new usage.CpuMonitor();
+
+// watch cpu usage overview
+cpuMonitor.on('cpuUsage', function(data) {
+    console.log(data);
+
+    // { user: '9.33', sys: '56.0', idle: '34.66' }
+});
+
+
 /**
  * PETICIÓN GET PARA LA VISTA DE INFORMACIÓN CPU
  */
