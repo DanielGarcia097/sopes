@@ -124,56 +124,15 @@ getProcessData = function () {
 
 var cpuStats = require('cpu-stats');
 
-// the first argument is how long to sample for in ms.
-// longer is more accurate but, you know, longer.
-// if omitted, defaults to one second.
-//setInterval( function () {
+setInterval( function () {
 cpuStats(1000, function (error, result) {
     if (error) return console.error('Oh noes!', error) // actually this will never happen
 
-    console.info(result[0].cpu);
+    console.info("%CPU: "+result[0].cpu);
 });
-//},1000);
-
-/*var cpuStat = require('cpu-stat');
-
-setInterval(function () {
-cpuStat.usagePercent(function(err, percent, result) {
-    if (err) {
-      return console.log(err);
-    }
-
-    //the percentage cpu usage over all cores
-    console.log("%"+percent);
-
-    //the approximate number of seconds the sample was taken over
-    console.log(result);
-});
-
 },1000);
-*/
 
 
-
-
-
-/*var cpus = os.cpus();
-
-setInterval(function () {
-    for (var i = 0, len = cpus.length; i < len; i++) {
-        console.log("CPU %s:", i);
-        var cpu = cpus[i], total = 0.000;
-
-        for (var type in cpu.times) {
-            total += cpu.times[type];
-        }
-
-        for (type in cpu.times) {
-            console.log("\t", type, Math.round(100 * cpu.times[type] / total));
-        }
-    }
-},1000);
-*/
 /**
  * PETICIÓN GET PARA LA VISTA DE INFORMACIÓN CPU
  */
