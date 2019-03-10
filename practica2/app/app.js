@@ -51,6 +51,7 @@ const testFolder = '/proc/';
 fs.readdir(testFolder, (err, files) => {
   files.forEach(file => {
     if (!isNaN(file)) {
+      var pid = file;
       file = testFolder + file;
       fs.readFile(file + "/status", function (err, data) {
         var elems = data.toString().split('\n');
@@ -58,9 +59,11 @@ fs.readdir(testFolder, (err, files) => {
         var user = elems[8];
         var state = estado.split('	')[1].split(' ');
         var id_user = user.split('	');
+	var name = elems[0].split('	');
         console.log("uid name is:", userid.username(parseInt(id_user[1])));
         console.log(id_user[1]);
-
+	console.log("name process: "+name[1]);
+        console.log("PID: "+pid);
 
         if (state[0] == "S") {
           suspendido += 1;
@@ -85,7 +88,7 @@ fs.readdir(testFolder, (err, files) => {
       fs.readFile(file + "/statm", function (err, data) {
         var elems = data.toString().split(' ');
         var memoria = elems[1];
-        console.log("Cantidad memoria: "+memoria+"Porcentaje: "+memoria/1000+"%");
+        console.log(file+" Cantidad memoria: "+memoria+"Porcentaje: "+memoria/10000+"%");
 
       });
 
