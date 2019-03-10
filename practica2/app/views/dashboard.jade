@@ -322,6 +322,11 @@ html(lang='en')
                   .overview-wrap
                     h1 DATA: 
                     h1 #{data1[0]}
+                    ul.navbar-mobile-sub__list.list-unstyled.js-sub-list
+                    - for (var i = 0; i <= data1.length -1; i++)             
+                        li
+                          p #{data1[i]+1}
+
                     h2.title-1 overview
                     button.au-btn.au-btn-icon.au-btn--blue
                       i.zmdi.zmdi-plus
