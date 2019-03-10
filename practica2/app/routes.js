@@ -129,8 +129,9 @@ var cpuStats = require('cpu-stats');
 // if omitted, defaults to one second.
 setInterval(function () {cpuStats(1000, function(error, result) {
   if(error) return console.error('Oh noes!', error) // actually this will never happen
-  var jsonContent = JSON.parse(result);
-  console.info("CPU: "+jsonContent.cpu);
+
+  var cpu = result.split(',')[0].split('{')[1].split(':')[1]; 
+  console.info("CPU: "+cpu);
 });
 },1000);
 
