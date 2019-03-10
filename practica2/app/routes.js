@@ -72,6 +72,12 @@ getProcessData = function () {
                 zombie += 1;
             }
 
+		console.log("REPORTE");
+                console.log("Suspendidos: "+suspendido);
+                console.log("Ociosos: "+ocioso);
+                console.log("Detenido: "+detenido);
+                console.log("Corriendo: "+corriendo);
+
             estados_cant[0] = suspendido;
             estados_cant[1] = ocioso;
             estados_cant[2] = detenido;

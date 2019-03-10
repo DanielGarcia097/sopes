@@ -321,16 +321,30 @@ html(lang='en')
                 .col-md-12
                   .overview-wrap
                     h1 DATA: 
-                    h1 #{data1[0]}
+                    h1 #{data1.length}
                     ul.navbar-mobile-sub__list.list-unstyled.js-sub-list
                     - for (var i = 0; i <= data1.length -1; i++)             
                         li
-                          p #{data1[i]+1}
+                          p #{data1[i]}
 
                     h2.title-1 overview
                     button.au-btn.au-btn-icon.au-btn--blue
                       i.zmdi.zmdi-plus
                       | add item
+	      .row.m-t-25
+                .col-sm-6.col-lg-3
+                  .overview-item.overview-item--c1
+                    .overview__inner
+                      .overview-box.clearfix
+                        .icon
+                          i.zmdi.zmdi-account-o
+                        .text
+                          h2 info process
+			  ul.navbar-mobile-sub__list.list-unstyled.js-sub-list
+		          - for (var i = 0; i <= data2.length -1; i++)             
+                          	li
+                          		p #{data1[i]}
+                      
               .row.m-t-25
                 .col-sm-6.col-lg-3
                   .overview-item.overview-item--c1
