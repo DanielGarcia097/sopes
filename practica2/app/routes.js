@@ -124,13 +124,6 @@ getProcessData = function () {
 
 
 
-var os2 = require('os-utils');
-
-os2.cpuUsage(function(v){
-    console.log( 'CPU Usage (%): ' + v );
-});
-
-
 var usage = require('os-usage');
 
 var opts = { delay: 2};
