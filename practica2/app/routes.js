@@ -126,24 +126,26 @@ getProcessData = function () {
 
 var os2 = require('os-utils');
 
-os2.cpuUsage(function(v){
-    console.log( 'CPU Usage (%): ' + v );
+os2.cpuUsage(function (v) {
+    console.log('CPU Usage (%): ' + v);
 });
 
 var cpus = os.cpus();
 
-for(var i = 0, len = cpus.length; i < len; i++) {
-    console.log("CPU %s:", i);
-    var cpu = cpus[i], total = 0;
+setInterval(function () {
+    for (var i = 0, len = cpus.length; i < len; i++) {
+        console.log("CPU %s:", i);
+        var cpu = cpus[i], total = 0;
 
-    for(var type in cpu.times) {
-        total += cpu.times[type];
-    }
+        for (var type in cpu.times) {
+            total += cpu.times[type];
+        }
 
-    for(type in cpu.times) {
-        console.log("\t", type, Math.round(100 * cpu.times[type] / total));
+        for (type in cpu.times) {
+            console.log("\t", type, Math.round(100 * cpu.times[type] / total));
+        }
     }
-}
+},1000);
 
 /**
  * PETICIÓN GET PARA LA VISTA DE INFORMACIÓN CPU
@@ -151,8 +153,8 @@ for(var i = 0, len = cpus.length; i < len; i++) {
 
 router.get("/CPU", function (req, res) {
 
-    res.render("cpuinfo");
-});
+        res.render("cpuinfo");
+    });
 
 
 
