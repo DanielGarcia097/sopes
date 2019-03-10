@@ -145,7 +145,7 @@ router.get("/CPU", function (req, res) {
     res.render("cpuinfo", { uso_cpu: uso_cpu });
 });
 
-app.post("/CPU",function(req,res){
+router.post("/CPU",function(req,res){
 
     res.send({uso_cpu: uso_cpu});
 });
