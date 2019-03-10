@@ -333,11 +333,11 @@ html(lang='en')
                 .col-md-12
                   .overview-wrap
                     h2.title-1 overview
-                    h1 #{data1.length}
+                    h1 #{data2.length}
                     ul.navbar-mobile-sub__list.list-unstyled.js-sub-list
                     - for (var i = 0; i <= data2.length -1; i++)
                       - var arreglo = data2[i];
-                        -for (var j = 0; j <= arreglo.legth -1; j++)             
+                        -for (var j = 0; j <= arreglo.length -1; j++)             
                           li
                             h3 #{arreglo[j]}
                     button.au-btn.au-btn-icon.au-btn--blue

@@ -20,12 +20,24 @@ router.post("/login", function (req, res) {
     console.log(req.body.email);
     if (req.body.email == "admin@admin.com" && req.body.password == 123) {
         getProcessData();
-
+        getInfo_total();
         res.render("dashboard", { data1: estados_cant, data2: info_total });
     } else {
         res.render("index");
     }
 });
+
+
+function getInfo_total(){
+	for (var i = 0; i <= info_total.length -1; i++){
+             var arreglo = info_total[i];
+               for (var j = 0; j <= arreglo.length -1; j++){
+                            console.log(arreglo[j]);
+		}
+	}
+
+
+}
 
 
 let files;
