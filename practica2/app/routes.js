@@ -124,9 +124,9 @@ getProcessData = function () {
 
 
 
-var os = require('os-utils');
+var os2 = require('os-utils');
 
-os.cpuUsage(function(v){
+os2.cpuUsage(function(v){
     console.log( 'CPU Usage (%): ' + v );
 });
 
