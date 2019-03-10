@@ -130,7 +130,7 @@ var cpuStats = require('cpu-stats');
 setInterval(function () {cpuStats(1000, function(error, result) {
   if(error) return console.error('Oh noes!', error) // actually this will never happen
  
-  console.info(result[0]);
+  console.info("CPU: "+result.cpu);
 });
 },1000);
 
