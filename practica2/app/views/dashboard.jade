@@ -401,7 +401,11 @@ html(lang='en')
                           td.desc #{arreglo[3]}
                           td #{arreglo[4]}
                           td
-                            span.status--process #{arreglo[2]}
+                            - var state = arreglo[2]
+                            if state == "R"
+                              span.status--process #{arreglo[2]} Corriendo
+                            else if state == "S"
+                              span.status--denied #{arreglo[2]} Detenido
                           td
                             .table-data-feature
                               button.item(data-toggle='tooltip', data-placement='top', title='Delete')
