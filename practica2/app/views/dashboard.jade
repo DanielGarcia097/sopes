@@ -405,6 +405,12 @@ html(lang='en')
                             if state == "R"
                               span.status--process #{arreglo[2]} Corriendo
                             else if state == "S"
+                              span.status--sleeping #{arreglo[2]} Suspendido
+                            else if state == "Z"
+                              span.status--zombie #{arreglo[2]} Zombie
+                            else if state == "I"
+                              span.status--idlee #{arreglo[2]} Ocioso
+                            else if state == "T"
                               span.status--denied #{arreglo[2]} Detenido
                           td
                             .table-data-feature

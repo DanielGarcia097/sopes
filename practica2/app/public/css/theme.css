@@ -4665,6 +4665,18 @@ section {
     color: #fa4251;
 }
 
+.status--sleeping {
+    color: #E7E401;
+}
+
+.status--zombie {
+    color: #3B0382;
+}
+
+.status--idlee {
+    color: #032982;
+}
+
 .table-data3 thead {
     background: #333;
 }
