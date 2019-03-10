@@ -131,7 +131,7 @@ var cpuStats = require('cpu-stats');
 cpuStats(1000, function (error, result) {
     if (error) return console.error('Oh noes!', error) // actually this will never happen
 
-    console.info(result);
+    console.info(result[0].cpu);
 });
 //},1000);
 
