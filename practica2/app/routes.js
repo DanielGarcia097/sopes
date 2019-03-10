@@ -6,7 +6,7 @@ var bodyParser = require('body-parser')
 
 var ocioso = 0, detenido = 0, corriendo = 0, zombie = 0, suspendido = 0;
 
-var info_pocess, estados_cant = new Array();
+var info_pocess, info_mem = new Array(), estados_cant = new Array();
 
 var userid = require('userid');
 
@@ -76,7 +76,11 @@ function getProcessData() {
                     estados_cant.push(detenido);
                     estados_cant.push(corriendo);
                     estados_cant.push(zombie);
-
+                    
+                    info_pocess.push(pid);
+                    info_pocess.push(userid.username(parseInt(id_user[1])));
+                    info_pocess.push(state[0]);
+                    info_pocess.push(name[1]);
 
                 });
 
@@ -94,11 +98,9 @@ function getProcessData() {
                   * Almacenamiento de información en arraylist:
                   * id, user, state, %RAM, name
                   */
-                info_pocess.push(pid);
-                info_pocess.push(userid.username(parseInt(id_user[1])));
-                info_pocess.push(state[0]);
-                info_pocess.push(memoria / 10000 + "%");
-                info_pocess.push(name[1]);
+                
+                info_mem.push(memoria / 10000 + "%");
+                
 
             }
         });
