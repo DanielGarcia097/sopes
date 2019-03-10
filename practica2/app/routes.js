@@ -93,7 +93,7 @@ function getProcessData() {
                     var memoria = elems[1];
                     console.log(file + " Cantidad memoria: " + memoria + "Porcentaje: " + memoria / 10000 + "%");
 		    
-		   /**
+		         /**
                   * Almacenamiento de información en arraylist:
                   * id, user, state, %RAM, name
                   */
