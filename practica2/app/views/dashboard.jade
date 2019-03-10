@@ -329,7 +329,7 @@ html(lang='en')
                           i.zmdi.zmdi-account-o
                         .text
                           h2 Corriendo
-                          span data1[3]
+                          span #{data1[3]}
                       .overview-chart
                         canvas#widgetChart1
                 .col-sm-6.col-lg-3
@@ -340,7 +340,7 @@ html(lang='en')
                           i.zmdi.zmdi-shopping-cart
                         .text
                           h2 Suspendidos
-                          span data1[0]
+                          span #{data1[0]}
                       .overview-chart
                         canvas#widgetChart2
                 .col-sm-6.col-lg-3
@@ -351,7 +351,7 @@ html(lang='en')
                           i.zmdi.zmdi-calendar-note
                         .text
                           h2 Ociosos
-                          span data1[1]
+                          span #{data1[1]}
                       .overview-chart
                         canvas#widgetChart3
                 .col-sm-6.col-lg-3
@@ -362,7 +362,7 @@ html(lang='en')
                           i.zmdi.zmdi-money
                         .text
                           h2 Zombie
-                          span data1[4]
+                          span #{data1[4]}
                       .overview-chart
                         canvas#widgetChart4
                 .col-sm-6.col-lg-3
@@ -373,7 +373,7 @@ html(lang='en')
                           i.zmdi.zmdi-account-o
                         .text
                           h2 Detenidos
-                          span data1[2]
+                          span #{data1[2]}
                       .overview-chart
                         canvas#widgetChart1
               .row
@@ -394,18 +394,17 @@ html(lang='en')
                       - for (var i = 0; i <= data2.length -1; i++)
                         tr.tr-shadow
                           - var arreglo = data2[i];
-                          -for (var j = 0; j <= arreglo.length -1; j++)
-                            td arreglo[0]
-                            td
-                              span.block-email arreglo[1]
-                            td.desc arreglo[3]
-                            td arreglo[4]
-                            td
-                              span.status--process arreglo[2]
-                            td
-                              .table-data-feature
-                                button.item(data-toggle='tooltip', data-placement='top', title='Delete')
-                                  i.zmdi.zmdi-delete
+                          td #{arreglo[0]}
+                          td
+                            span.block-email #{arreglo[1]}
+                          td.desc #{arreglo[3]}
+                          td #{arreglo[4]}
+                          td
+                            span.status--process #{arreglo[2]}
+                          td
+                            .table-data-feature
+                              button.item(data-toggle='tooltip', data-placement='top', title='Delete')
+                                i.zmdi.zmdi-delete
                   // END DATA TABLE
               .row
                 .col-md-12
