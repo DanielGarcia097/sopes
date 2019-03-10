@@ -131,12 +131,10 @@ var cpuStats = require('cpu-stats');
 cpuStats(1000, function (error, result) {
     if (error) return console.error('Oh noes!', error) // actually this will never happen
     console.log(typeof result);
-    var obj = JSON.stringify(result);
-    var json = JSON.parse(obj);
 
-    var keys = Object.keys(json);
+    var keys = Object.keys(result);
     console.log(keys);
-    //console.info("CPU: "+result);
+    console.info("CPU: "+result);
 });
 //},1000);
 
