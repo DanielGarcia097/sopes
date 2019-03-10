@@ -128,7 +128,7 @@ getProcessData = function () {
  * PETICIÓN GET PARA LA VISTA DE INFORMACIÓN CPU
  */
 
-app.get("/CPU", function (req, res) {
+router.get("/CPU", function (req, res) {
 
     res.render("cpuinfo");
 });
