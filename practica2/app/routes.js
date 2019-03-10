@@ -132,11 +132,9 @@ cpuStats(1000, function (error, result) {
     if (error) return console.error('Oh noes!', error) // actually this will never happen
     console.log(typeof result);
     var obj = JSON.stringify(result);
-    for (var key in obj) {
-        for (var innerKey in obj[key]) {
-            console.log("Key: " + innerKey + " value: " + obj[key][innerKey]);
-        }
-    }
+    var json = JSON.parse(obj);
+    console.log(json);
+    console.log("CPU", json.cpu);
     //console.info("CPU: "+result);
 });
 //},1000);
