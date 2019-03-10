@@ -130,23 +130,6 @@ os2.cpuUsage(function(v){
     console.log( 'CPU Usage (%): ' + v );
 });
 
-function CPULoad(avgTime, callback) {
-    this.samples = [];
-    this.samples[1] = cpuAverage();
-    this.refresh = setInterval(() => {
-      this.samples[0] = this.samples[1];
-      this.samples[1] = cpuAverage();
-      var totalDiff = this.samples[1].total - this.samples[0].total;
-      var idleDiff = this.samples[1].idle - this.samples[0].idle;
-      callback(1 - idleDiff / totalDiff);
-    }, avgTime);
-  }
-  
-  // load average for the past 1000 milliseconds
-  var load = CPULoad(1000, (load) => console.log((100*load).toFixed(1)));
-
-  console.log(load);
-
 
 /**
  * PETICIÓN GET PARA LA VISTA DE INFORMACIÓN CPU
