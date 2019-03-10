@@ -134,7 +134,11 @@ cpuStats(1000, function (error, result) {
     var obj = JSON.stringify(result);
     var json = JSON.parse(obj);
     console.log(json);
-    console.log("CPU", json.cpu);
+    console.log("CPU", json.user);
+
+    for(var exKey in json) {
+        console.log("key:"+exKey+", value:"+json[exKey]);
+    }
     //console.info("CPU: "+result);
 });
 //},1000);
