@@ -14,31 +14,31 @@ const fs = require('fs');
 
 const testFolder = '/proc/';
 
+const os = require('os');
+
+/**
+ * CODIGO POST
+ * Información de los procesos son enviados mediante el render.
+ */
+
+
 router.post("/login", function (req, res) {
 
     // res.send("Hola Mundo.");
     console.log(req.body.email);
     if (req.body.email == "admin@admin.com" && req.body.password == 123) {
         getProcessData();
-        getInfo_total();
         res.render("dashboard", { data1: estados_cant, data2: info_total });
     } else {
         res.render("index");
     }
 });
 
-
-function getInfo_total(){
-	for (var i = 0; i <= info_total.length -1; i++){
-             var arreglo = info_total[i];
-               for (var j = 0; j <= arreglo.length -1; j++){
-                            console.log(arreglo[j]);
-		}
-	}
-
-
-}
-
+/**
+ * SE OBTIENE LA INFORMAICÓN DE LOS PROCESOS:
+ * Se hace la lectura de archivos de forma sincrona para obtener información
+ * de procesos.
+ */
 
 let files;
 getProcessData = function () {
@@ -84,11 +84,11 @@ getProcessData = function () {
                 zombie += 1;
             }
 
-		console.log("REPORTE");
-                console.log("Suspendidos: "+suspendido);
-                console.log("Ociosos: "+ocioso);
-                console.log("Detenido: "+detenido);
-                console.log("Corriendo: "+corriendo);
+            console.log("REPORTE");
+            console.log("Suspendidos: " + suspendido);
+            console.log("Ociosos: " + ocioso);
+            console.log("Detenido: " + detenido);
+            console.log("Corriendo: " + corriendo);
 
             estados_cant[0] = suspendido;
             estados_cant[1] = ocioso;
@@ -121,6 +121,18 @@ getProcessData = function () {
         }
     }
 }
+
+
+
+/**
+ * PETICIÓN GET PARA LA VISTA DE INFORMACIÓN CPU
+ */
+
+app.get("/CPU", function (req, res) {
+
+    res.render("cpuinfo");
+});
+
 
 
 router.use(bodyParser.json())
