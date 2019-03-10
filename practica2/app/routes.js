@@ -124,6 +124,7 @@ getProcessData = function () {
 
 var cpuStat = require('cpu-stat');
 
+setInterval(function () {
 cpuStat.usagePercent(function(err, percent, seconds) {
     if (err) {
       return console.log(err);
@@ -135,6 +136,8 @@ cpuStat.usagePercent(function(err, percent, seconds) {
     //the approximate number of seconds the sample was taken over
     console.log(seconds);
 });
+
+},1000);
 
 /*var cpus = os.cpus();
 
