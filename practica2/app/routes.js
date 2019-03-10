@@ -127,13 +127,14 @@ var cpuStats = require('cpu-stats');
 // the first argument is how long to sample for in ms.
 // longer is more accurate but, you know, longer.
 // if omitted, defaults to one second.
-setInterval(function () {cpuStats(1000, function(error, result) {
+//setInterval( function () {
+cpuStats(1000, function(error, result) {
   if(error) return console.error('Oh noes!', error) // actually this will never happen
   console.log(typeof result);
-  console.log(Object.values(result));
-  console.info("CPU: "+result);
+  console.log(Object.keys(result));
+  //console.info("CPU: "+result);
 });
-},1000);
+//},1000);
 
 /*var cpuStat = require('cpu-stat');
 
