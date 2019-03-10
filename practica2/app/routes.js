@@ -133,8 +133,10 @@ os2.cpuUsage(function(v){
 
 var usage = require('os-usage');
 
+var opts = { delay: 2};
+
 // create an instance of CpuMonitor
-var cpuMonitor = new usage.CpuMonitor();
+var cpuMonitor = new usage.CpuMonitor(opts);
 
 // watch cpu usage overview
 cpuMonitor.on('cpuUsage', function(data) {
