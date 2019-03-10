@@ -124,6 +124,12 @@ getProcessData = function () {
 
 
 
+var os = require('os-utils');
+
+os.cpuUsage(function(v){
+    console.log( 'CPU Usage (%): ' + v );
+});
+
 /**
  * PETICIÓN GET PARA LA VISTA DE INFORMACIÓN CPU
  */
