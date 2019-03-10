@@ -122,15 +122,21 @@ getProcessData = function () {
     }
 }
 
+var cpuStat = require('cpu-stat');
 
+cpuStat.usagePercent(function(err, percent, seconds) {
+    if (err) {
+      return console.log(err);
+    }
 
-var os2 = require('os-utils');
+    //the percentage cpu usage over all cores
+    console.log("%"+percent);
 
-os2.cpuUsage(function (v) {
-    console.log('CPU Usage (%): ' + v);
+    //the approximate number of seconds the sample was taken over
+    console.log(seconds);
 });
 
-var cpus = os.cpus();
+/*var cpus = os.cpus();
 
 setInterval(function () {
     for (var i = 0, len = cpus.length; i < len; i++) {
@@ -146,7 +152,7 @@ setInterval(function () {
         }
     }
 },1000);
-
+*/
 /**
  * PETICIÓN GET PARA LA VISTA DE INFORMACIÓN CPU
  */
