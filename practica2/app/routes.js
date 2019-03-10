@@ -6,7 +6,7 @@ var bodyParser = require('body-parser')
 
 var ocioso = 0, detenido = 0, corriendo = 0, zombie = 0, suspendido = 0;
 
-var info_pocess, info_mem = new Array(), estados_cant = new Array();
+var info_pocess, info_total = new Array(), estados_cant = [];
 
 var userid = require('userid');
 
@@ -20,25 +20,22 @@ router.post("/login", function (req, res) {
     console.log(req.body.email);
     if (req.body.email == "admin@admin.com" && req.body.password == 123) {
         getProcessData();
-        getPrint();
-        console.log("ESTADOS -......................................" + estados_cant[0]);
-        res.render("dashboard", { data1: estados_cant });
+        
+        res.render("dashboard", { data1: estados_cant , data2:info_total});
     } else {
         res.render("index");
     }
 });
 
-function getPrint() {
-    console.log("ESTADOS----------------------------------------+" + estados_cant[0]);
-}
 
+let files;
 getProcessData = function () {
     files = fs.readdirSync(testFolder);
     for(var file in files){
-        if (!isNaN(file)) {
-            var pid = file;
-            file = testFolder + file;
-            fs.readFileSync(file + "/status");
+        if (!isNaN(files[file])) {
+            var pid = files[file];
+            dir_file = testFolder + files[file];
+            var data = fs.readFileSync(dir_file + "/status");
             info_pocess = new Array();
             /**
              * Información extraída del archivo /status
@@ -75,11 +72,11 @@ getProcessData = function () {
                 zombie += 1;
             }
 
-            estados_cant.push(suspendido);
-            estados_cant.push(ocioso);
-            estados_cant.push(detenido);
-            estados_cant.push(corriendo);
-            estados_cant.push(zombie);
+	    estados_cant[0] = suspendido;
+            estados_cant[1] = ocioso;
+            estados_cant[2] = detenido;
+            estados_cant[3] = corriendo;
+            estados_cant[4] = zombie;
 
             info_pocess.push(pid);
             info_pocess.push(userid.username(parseInt(id_user[1])));
@@ -91,7 +88,7 @@ getProcessData = function () {
              * Lectura del porcentaje de memoria utilizada por un proceso en el archivo /statm
              */
 
-            fs.readFileSync(file + "/statm");
+            data = fs.readFileSync(testFolder+files[file] + "/statm");
             var elems = data.toString().split(' ');
             var memoria = elems[1];
             console.log(file + " Cantidad memoria: " + memoria + "Porcentaje: " + memoria / 10000 + "%");
@@ -101,8 +98,8 @@ getProcessData = function () {
              * id, user, state, %RAM, name
              */
 
-            info_mem.push(memoria / 10000 + "%");
-
+            info_pocess.push(memoria / 10000 + "%");
+	    info_total.push(info_pocess);
         }
     }
 }
