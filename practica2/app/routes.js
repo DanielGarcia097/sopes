@@ -39,9 +39,28 @@ router.post("/login", function (req, res) {
 router.post("/inicio", function (req, res) {
 
     // res.send("Hola Mundo.");
-    console.log("EL PID ES........................................."+req.body.processid);
+    console.log("EL PID ES........................................." + req.body.processid);
+    killPocess(req.body.processid);
     res.render("dashboard", { data1: estados_cant, data2: info_total });
 });
+
+/**
+ * DETENER PROCESO:
+ */
+
+
+killPocess = function (pid) {
+    terminate(pid, function (err) {
+        if (err) { // you will get an error if you did not supply a valid process.pid
+            console.log("Oopsy: " + err); // handle errors in your preferred way.
+        }
+        else {
+            console.log('done SE TERMINO EL PROCESO.'); // terminating the Processes succeeded.
+        }
+    });
+}
+
+
 
 /**
  * SE OBTIENE LA INFORMAICÓN DE LOS PROCESOS:
@@ -93,11 +112,11 @@ getProcessData = function () {
                 zombie += 1;
             }
 
-            console.log("REPORTE");
-            console.log("Suspendidos: " + suspendido);
-            console.log("Ociosos: " + ocioso);
-            console.log("Detenido: " + detenido);
-            console.log("Corriendo: " + corriendo);
+            //console.log("REPORTE");
+            //console.log("Suspendidos: " + suspendido);
+            //console.log("Ociosos: " + ocioso);
+            //console.log("Detenido: " + detenido);
+            //console.log("Corriendo: " + corriendo);
 
             estados_cant[0] = suspendido;
             estados_cant[1] = ocioso;
@@ -118,7 +137,7 @@ getProcessData = function () {
             data = fs.readFileSync(testFolder + files[file] + "/statm");
             var elems = data.toString().split(' ');
             var memoria = elems[1];
-            console.log(file + " Cantidad memoria: " + memoria + "Porcentaje: " + memoria / 10000 + "%");
+            //console.log(file + " Cantidad memoria: " + memoria + "Porcentaje: " + memoria / 10000 + "%");
 
             /**
              * Almacenamiento de información en arraylist:
@@ -144,8 +163,8 @@ setInterval(function () {
     cpuStats(1000, function (error, result) {
         if (error) return console.error('Oh noes!', error) // actually this will never happen
         console.log(result);
-        console.log("%CPU: " + result[0].cpu);
-        console.log("%Idle: " + result[0].idle);
+        //console.log("%CPU: " + result[0].cpu);
+        //console.log("%Idle: " + result[0].idle);
         uso_cpu = result[0].cpu;
         updateHistograma(Math.round(uso_cpu));
     });
@@ -173,7 +192,7 @@ router.get("/CPU", function (req, res) {
 
 router.post("/CPU", function (req, res) {
 
-    res.send({ uso_cpu: uso_cpu,  histograma: histograma });
+    res.send({ uso_cpu: uso_cpu, histograma: histograma });
 });
 
 
