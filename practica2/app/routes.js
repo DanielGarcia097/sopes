@@ -18,6 +18,8 @@ const os = require('os');
 
 var terminate = require('terminate');
 
+var memStat = require('mem-stat');
+
 /**
  * CODIGO POST
  * Información de los procesos son enviados mediante el render.
@@ -195,7 +197,12 @@ router.post("/CPU", function (req, res) {
     res.send({ uso_cpu: uso_cpu, histograma: histograma });
 });
 
+/**
+ * % DE MEMORIA UTILIZADA
+ */
 
+var usedPercent = memStat.usedPercent();
+console.log(usedPercent);
 
 router.use(bodyParser.json())
 
