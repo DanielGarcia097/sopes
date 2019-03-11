@@ -162,7 +162,7 @@ for (var i = 0; i < largo_histograma; i++) {
 setInterval(function () {
     cpuStats(1000, function (error, result) {
         if (error) return console.error('Oh noes!', error) // actually this will never happen
-        console.log(result);
+        //console.log(result);
         //console.log("%CPU: " + result[0].cpu);
         //console.log("%Idle: " + result[0].idle);
         uso_cpu = result[0].cpu;
