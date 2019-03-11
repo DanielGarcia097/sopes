@@ -8,7 +8,7 @@ html(lang='en')
     meta(name='author', content='Hau Nguyen')
     meta(name='keywords', content='au theme template')
     // Title Page
-    title Dashboard
+    title Charts
     // Fontfaces CSS
     link(href='css/font-face.css', rel='stylesheet', media='all')
     link(href='vendor/font-awesome-4.7/css/font-awesome.min.css', rel='stylesheet', media='all')
@@ -26,6 +26,61 @@ html(lang='en')
     link(href='vendor/perfect-scrollbar/perfect-scrollbar.css', rel='stylesheet', media='all')
     // Main CSS
     link(href='css/theme.css', rel='stylesheet', media='all')
+    script(type='text/javascript', src='https://www.gstatic.com/charts/loader.js')
+    script.
+        google.charts.load('current', {packages: ['corechart', 'line']});
+        google.charts.setOnLoadCallback(drawBackgroundColor);
+
+        var chartLoaded = false;
+        var histogram = [];
+
+        function drawBackgroundColor() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('number', 'X');
+            data.addColumn('number', 'MEMORIA');
+            data.addRows(histogram);
+
+            var options = {
+                hAxis: {
+                title: 'Seconds'
+                },
+                vAxis: {
+                title: '%MEM Usage',
+                viewWindow:{
+                    min: 0,
+                    max: 100
+                }
+                },
+                backgroundColor: '#f1f8e9'
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+            chartLoaded = true;
+            }
+
+        var inf;
+        function update(){
+            $.ajax({
+            url: '/MEM',
+            type: 'POST',
+            success: function (data) {
+                    
+                    //console.log(data.histograma);
+                    inf = data
+                    $("#use_mem").html(data.uso_mem+"%");
+                    histogram = data.histograma2;
+                    console.log(histogram);
+
+                    if(chartLoaded)
+                        drawBackgroundColor();
+                }
+            });
+            console.log("ARCHIVOLISTO");
+            console.log(inf);
+        }
+        setInterval(update, 1000);
+
   body.animsition
     .page-wrapper
       // HEADER MOBILE
@@ -55,13 +110,13 @@ html(lang='en')
                   li
                     a(href='index4.html') Dashboard 4
               li
-                a(href='/CPU')
+                a(href='chart.html')
                   i.fas.fa-chart-bar
-                  | CPU INFORMACION
+                  | Charts
               li
-                a(href='/MEM')
+                a(href='table.html')
                   i.fas.fa-table
-                  | MEMORIA INFORMACION
+                  | Tables
               li
                 a(href='form.html')
                   i.far.fa-check-square
@@ -121,7 +176,7 @@ html(lang='en')
         .menu-sidebar__content.js-scrollbar1
           nav.navbar-sidebar
             ul.list-unstyled.navbar__list
-              li.active.has-sub
+              li.has-sub
                 a.js-arrow(href='#')
                   i.fas.fa-tachometer-alt
                   | Dashboard
@@ -134,14 +189,10 @@ html(lang='en')
                     a(href='index3.html') Dashboard 3
                   li
                     a(href='index4.html') Dashboard 4
-              li
-                a(href='/CPU')
+              li.active
+                a(href='chart.html')
                   i.fas.fa-chart-bar
-                  | CPU INFORMACION
-              li
-                a(href='/MEM')
-                  i.fas.fa-table
-                  | MEMORIA INFORMACION
+                  | Charts
               li
                 a(href='table.html')
                   i.fas.fa-table
@@ -316,112 +367,19 @@ html(lang='en')
                           a(href='#')
                             i.zmdi.zmdi-power
                             | Logout
-        // HEADER DESKTOP
+        // END HEADER DESKTOP
         // MAIN CONTENT
         .main-content
           .section__content.section__content--p30
             .container-fluid
               .row
-                .col-md-12
-                  .overview-wrap
-                    h2.title-1 Información de Procesos
-              div
-                .col-sm-6.col-lg-3
-                  .overview-item.overview-item--c1
-                    .overview__inner
-                      .overview-box.clearfix
-                        .icon
-                          i.zmdi.zmdi-account-o
-                        .text
-                          h2 Corriendo
-                          span #{data1[3]}
-                      .overview-chart
-                        canvas#widgetChart1
-                .col-sm-6.col-lg-3
-                  .overview-item.overview-item--c2
-                    .overview__inner
-                      .overview-box.clearfix
-                        .icon
-                          i.zmdi.zmdi-shopping-cart
-                        .text
-                          h2 Suspendidos
-                          span #{data1[0]}
-                      .overview-chart
-                        canvas#widgetChart2
-                .col-sm-6.col-lg-3
-                  .overview-item.overview-item--c3
-                    .overview__inner
-                      .overview-box.clearfix
-                        .icon
-                          i.zmdi.zmdi-calendar-note
-                        .text
-                          h2 Ociosos
-                          span #{data1[1]}
-                      .overview-chart
-                        canvas#widgetChart3
-                .col-sm-6.col-lg-3
-                  .overview-item.overview-item--c4
-                    .overview__inner
-                      .overview-box.clearfix
-                        .icon
-                          i.zmdi.zmdi-money
-                        .text
-                          h2 Zombie
-                          span #{data1[4]}
-                      .overview-chart
-                        canvas#widgetChart4
-                .col-sm-6.col-lg-3
-                  .overview-item.overview-item--c5
-                    .overview__inner
-                      .overview-box.clearfix
-                        .icon
-                          i.zmdi.zmdi-account-o
-                        .text
-                          h2 Detenidos
-                          span #{data1[2]}
-                      .overview-chart
-                        canvas#widgetChart1
-              .row
-                .col-md-12
-                  // DATA TABLE
-                  h3.title-5.m-b-35 data table
-                  form#form1(action='/inicio',method='POST')
-                    .table-responsive.table-responsive-data2
-                      table.table.table-data2
-                        thead
-                          tr
-                            th PID
-                            th Usuario
-                            th Nombre
-                            th %RAM
-                            th Estado
-                            th
-                        tbody
-                        - for (var i = 0; i <= data2.length -1; i++)
-                          tr.tr-shadow
-                            - var arreglo = data2[i];
-                            td #{arreglo[0]}
-                            td
-                              span.block-email #{arreglo[1]}
-                            td.desc #{arreglo[3]}
-                            td #{arreglo[4]}
-                            td
-                              - var state = arreglo[2]
-                              if state == "R"
-                                span.status--process #{arreglo[2]} Corriendo
-                              else if state == "S"
-                                span.status--sleeping #{arreglo[2]} Suspendido
-                              else if state == "Z"
-                                span.status--zombie #{arreglo[2]} Zombie
-                              else if state == "I"
-                                span.status--idlee #{arreglo[2]} Ocioso
-                              else if state == "T"
-                                span.status--denied #{arreglo[2]} Detenido
-                            td
-                              .table-data-feature
-                                button.item(name = 'processid',data-toggle='tooltip', data-placement='top', title='Delete', type='submit', form='form1', value=arreglo[0])
-                                  i.zmdi.zmdi-delete
-                  // END DATA TABLE
+                .col-lg-6
+                  .au-card.m-b-30(style='width: 1000px; height: 600px')
+                    .au-card-inner
+                        h3.title-2.m-b-40%MEM Utilizada:
+                        h3.title-2.m-b-40#use_mem  
+                        #chart_div(style='width: 900px; height: 450px')
+         
               .row
                 .col-md-12
                   .copyright

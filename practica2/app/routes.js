@@ -197,17 +197,48 @@ router.post("/CPU", function (req, res) {
     res.send({ uso_cpu: uso_cpu, histograma: histograma });
 });
 
+
+/**
+ * PETICIÓN GET PARA LA VISTA DE INFORMACIÓN MEMORIA
+ */
+
+router.get("/MEM", function (req, res) {
+
+    res.render("meminfo", { uso_mem: uso_mem });
+});
+
+router.post("/MEM", function (req, res) {
+
+    res.send({ uso_mem: uso_mem, histograma2: histograma2 });
+});
+
+
 /**
  * % DE MEMORIA UTILIZADA
  */
+var uso_mem;
+var histograma2 = [];
 
-var usedPercent;
-
+for (var i = 0; i < largo_histograma; i++) {
+    histograma2[i] = [i, 0];
+}
 
 setInterval(function () {
-   usedPercent = memStat.usedPercent();
-console.log("PORCENTAJE DE MEMORIA: "+usedPercent);
+    uso_mem = memStat.usedPercent();
+    console.log("PORCENTAJE DE MEMORIA: "+uso_mem);
+    updateHistograma2(Math.round(uso_mem));
 }, 1000);
+
+
+function updateHistograma2(uso_actual) {
+    if (histograma2.length >= largo_histograma)
+        histograma2.shift();
+
+    histograma2.push([0, uso_actual]);
+
+    for (var i = 0; i < largo_histograma; i++)
+        histograma2[i][0] = i;
+}
 
 
 
