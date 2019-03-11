@@ -36,7 +36,7 @@ html(lang='en')
                 a(href='#')
                   img(src='images/icon/logo.png', alt='CoolAdmin')
               .login-form
-                form(action='', method='post')
+                form(action='/dashboard', method='post')
                   .form-group
                     label Email Address
                     input.au-input.au-input--full(type='email', name='email', placeholder='Email')
@@ -47,17 +47,6 @@ html(lang='en')
                     label
                       input(type='checkbox', name='remember')
                       | Remember Me
-                    label
-                      a(href='#') Forgotten Password?
-                  button.au-btn.au-btn--block.au-btn--green.m-b-20(type='submit') sign in
-                  .social-login-content
-                    .social-button
-                      button.au-btn.au-btn--block.au-btn--blue.m-b-20 sign in with facebook
-                      button.au-btn.au-btn--block.au-btn--blue2 sign in with twitter
-                .register-link
-                  p
-                    | Don't you have account?
-                    a(href='#') Sign Up Here
     // Jquery JS
     script(src='vendor/jquery-3.2.1.min.js')
     // Bootstrap JS

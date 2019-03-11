@@ -26,7 +26,7 @@ var memStat = require('mem-stat');
  */
 
 
-router.post("/login", function (req, res) {
+router.post("/dashboard", function (req, res) {
 
     // res.send("Hola Mundo.");
     console.log(req.body.email);
