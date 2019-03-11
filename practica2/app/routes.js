@@ -21,11 +21,17 @@ var terminate = require('terminate');
 var memStat = require('mem-stat');
 
 /**
+ * CODIGO GET
+ */
+
+router.get("/dashboard", function (req, res) {
+    res.render("dashboard", { data1: estados_cant, data2: info_total });
+});
+
+/**
  * CODIGO POST
  * Información de los procesos son enviados mediante el render.
  */
-
-
 router.post("/dashboard", function (req, res) {
 
     // res.send("Hola Mundo.");
