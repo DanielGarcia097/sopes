@@ -39,7 +39,7 @@ router.post("/login", function (req, res) {
 router.post("/inicio", function (req, res) {
 
     // res.send("Hola Mundo.");
-    console.log(req.body.processid);
+    console.log("EL PID ES........................................."+req.body.processid);
     
 });
 
