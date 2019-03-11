@@ -40,7 +40,7 @@ router.post("/inicio", function (req, res) {
 
     // res.send("Hola Mundo.");
     console.log("EL PID ES........................................."+req.body.processid);
-    
+    res.render("dashboard", { data1: estados_cant, data2: info_total });
 });
 
 /**
