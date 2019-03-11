@@ -321,7 +321,7 @@ html(lang='en')
                 .col-lg-6
                   .au-card.m-b-30
                     .au-card-inner
-                      h3.title-2.m-b-40 #{data}
+                      h3.title-2.m-b-40#use_cpu #{data}
                       script.
                         function update(){
                             $.ajax({
@@ -329,7 +329,7 @@ html(lang='en')
                             type: 'POST',
                             }).done(function (data) {
                                     console.log(data);
-                                    $("#sales-chart").html(data.uso_cpu);
+                                    $("#use_cpu").html(data.uso_cpu);
                                 });
                         }
                         setInterval(update, 1000);
