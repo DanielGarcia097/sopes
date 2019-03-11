@@ -68,7 +68,7 @@ html(lang='en')
                     
                     //console.log(data.histograma);
                     inf = data
-                    $("#use_cpu").html(data.uso_cpu);
+                    $("#use_cpu").html(data.uso_cpu+"%");
                     histogram = data.histograma;
                     console.log(histogram);
 
@@ -377,7 +377,7 @@ html(lang='en')
                   .au-card.m-b-30(style='width: 1000px; height: 600px')
                     .au-card-inner
                         h3.title-2.m-b-40%CPU Utilizado:
-                        h3.title-2.m-b-40#use_cpu %
+                        h3.title-2.m-b-40#use_cpu  
                         #chart_div(style='width: 900px; height: 450px')
          
               .row
