@@ -202,7 +202,7 @@ router.post("/CPU", function (req, res) {
  */
 
 var usedPercent = memStat.usedPercent();
-console.log(usedPercent);
+console.log("PORCENTAJE DE MEMORIA: "+usedPercent);
 
 router.use(bodyParser.json())
 
