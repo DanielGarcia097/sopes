@@ -329,6 +329,7 @@ html(lang='en')
                             type: 'POST',
                             }).done(function (data) {
                                     console.log(data);
+                                    $("#sales-chart").html(data.uso_cpu);
                                 });
                         }
                         setInterval(update, 1000);
