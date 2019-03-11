@@ -27,61 +27,59 @@ html(lang='en')
     // Main CSS
     link(href='css/theme.css', rel='stylesheet', media='all')
     script(type='text/javascript', src='https://www.gstatic.com/charts/loader.js')
-        
-        script.
-            google.charts.load('current', {packages: ['corechart', 'line']});
-            google.charts.setOnLoadCallback(drawBackgroundColor);
+    script.
+        google.charts.load('current', {packages: ['corechart', 'line']});
+        google.charts.setOnLoadCallback(drawBackgroundColor);
 
-            var chartLoaded = false;
-            var histogram = [];
+        var chartLoaded = false;
+        var histogram = [];
 
-            function drawBackgroundColor() {
-                var data = new google.visualization.DataTable();
-                data.addColumn('number', 'X');
-                data.addColumn('number', 'CPU');
-                data.addRows(histogram);
+        function drawBackgroundColor() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('number', 'X');
+            data.addColumn('number', 'CPU');
+            data.addRows(histogram);
 
-                var options = {
-                    hAxis: {
-                    title: 'Seconds'
-                    },
-                    vAxis: {
-                    title: '%CPU Usage',
-                    viewWindow:{
-                        min: 0,
-                        max: 100
-                    }
-                    },
-                    backgroundColor: '#f1f8e9'
-                };
-
-                var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-                chart.draw(data, options);
-                chartLoaded = true;
-                
+            var options = {
+                hAxis: {
+                title: 'Seconds'
+                },
+                vAxis: {
+                title: '%CPU Usage',
+                viewWindow:{
+                    min: 0,
+                    max: 100
                 }
+                },
+                backgroundColor: '#f1f8e9'
+            };
 
-            var inf;
-            function update(){
-                $.ajax({
-                url: '/CPU',
-                type: 'POST',
-                success: function (data) {
-                        
-                        //console.log(data.histograma);
-                        inf = data
-                        $("#import1").html(data.uso_cpu);
-                        histogram = data.histograma;
-                        console.log(histogram);
-
-                        if(chartLoaded)
-                            drawBackgroundColor();
-                    }
-                });
-                console.log("ARCHIVOLISTO");
-                console.log(inf);
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+            chartLoaded = true;
             }
-            setInterval(update, 1000);
+
+        var inf;
+        function update(){
+            $.ajax({
+            url: '/CPU',
+            type: 'POST',
+            success: function (data) {
+                    
+                    //console.log(data.histograma);
+                    inf = data
+                    $("#import1").html(data.uso_cpu);
+                    histogram = data.histograma;
+                    console.log(histogram);
+
+                    if(chartLoaded)
+                        drawBackgroundColor();
+                }
+            });
+            console.log("ARCHIVOLISTO");
+            console.log(inf);
+        }
+        setInterval(update, 1000);
 
   body.animsition
     .page-wrapper
