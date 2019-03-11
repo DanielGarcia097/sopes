@@ -385,41 +385,42 @@ html(lang='en')
                 .col-md-12
                   // DATA TABLE
                   h3.title-5.m-b-35 data table
-                  .table-responsive.table-responsive-data2
-                    table.table.table-data2
-                      thead
-                        tr
-                          th PID
-                          th Usuario
-                          th Nombre
-                          th %RAM
-                          th Estado
-                          th
-                      tbody
-                      - for (var i = 0; i <= data2.length -1; i++)
-                        tr.tr-shadow
-                          - var arreglo = data2[i];
-                          td #{arreglo[0]}
-                          td
-                            span.block-email #{arreglo[1]}
-                          td.desc #{arreglo[3]}
-                          td #{arreglo[4]}
-                          td
-                            - var state = arreglo[2]
-                            if state == "R"
-                              span.status--process #{arreglo[2]} Corriendo
-                            else if state == "S"
-                              span.status--sleeping #{arreglo[2]} Suspendido
-                            else if state == "Z"
-                              span.status--zombie #{arreglo[2]} Zombie
-                            else if state == "I"
-                              span.status--idlee #{arreglo[2]} Ocioso
-                            else if state == "T"
-                              span.status--denied #{arreglo[2]} Detenido
-                          td
-                            .table-data-feature
-                              button.item(data-toggle='tooltip', data-placement='top', title='Delete')
-                                i.zmdi.zmdi-delete
+                  form#form1(method='POST')
+                    .table-responsive.table-responsive-data2
+                      table.table.table-data2
+                        thead
+                          tr
+                            th PID
+                            th Usuario
+                            th Nombre
+                            th %RAM
+                            th Estado
+                            th
+                        tbody
+                        - for (var i = 0; i <= data2.length -1; i++)
+                          tr.tr-shadow
+                            - var arreglo = data2[i];
+                            td #{arreglo[0]}
+                            td
+                              span.block-email #{arreglo[1]}
+                            td.desc #{arreglo[3]}
+                            td #{arreglo[4]}
+                            td
+                              - var state = arreglo[2]
+                              if state == "R"
+                                span.status--process #{arreglo[2]} Corriendo
+                              else if state == "S"
+                                span.status--sleeping #{arreglo[2]} Suspendido
+                              else if state == "Z"
+                                span.status--zombie #{arreglo[2]} Zombie
+                              else if state == "I"
+                                span.status--idlee #{arreglo[2]} Ocioso
+                              else if state == "T"
+                                span.status--denied #{arreglo[2]} Detenido
+                            td
+                              .table-data-feature
+                                button.item(data-toggle='tooltip', data-placement='top', title='Delete', type='submit', form='form1', value=#{arreglo[0]})
+                                  i.zmdi.zmdi-delete
                   // END DATA TABLE
               .row
                 .col-md-12

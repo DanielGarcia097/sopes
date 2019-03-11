@@ -16,6 +16,8 @@ const testFolder = '/proc/';
 
 const os = require('os');
 
+var terminate = require('terminate');
+
 /**
  * CODIGO POST
  * Información de los procesos son enviados mediante el render.
@@ -32,6 +34,13 @@ router.post("/login", function (req, res) {
     } else {
         res.render("index");
     }
+});
+
+router.post("/inicio", function (req, res) {
+
+    // res.send("Hola Mundo.");
+    console.log(req.body.processid);
+    
 });
 
 /**
