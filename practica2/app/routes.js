@@ -124,16 +124,30 @@ getProcessData = function () {
 
 var uso_cpu;
 var cpuStats = require('cpu-stats');
+var histograma = [];
+var largo_histograma = 61;
 
-setInterval( function () {
-cpuStats(1000, function (error, result) {
-    if (error) return console.error('Oh noes!', error) // actually this will never happen
-	console.log(result);
-    console.log("%CPU: "+result[0].cpu);
-    console.log("%Idle: "+result[0].idle);
-    uso_cpu = result[0].cpu;
-});
-},1000);
+for (var i = 0; i < largo_histograma; i++) {
+    histograma[i] = [i, 0];
+}
+
+setInterval(function () {
+    cpuStats(1000, function (error, result) {
+        if (error) return console.error('Oh noes!', error) // actually this will never happen
+        uso_cpu = result[0].cpu;
+        updateHistograma(Math.round(uso_cpu));
+    });
+}, 1000);
+
+function updateHistograma(uso_actual) {
+    if (histograma.length >= largo_histograma)
+        histograma.shift();
+
+    histograma.push([0, uso_actual]);
+
+    for (var i = 0; i < largo_histograma; i++)
+        histograma[i][0] = i;
+}
 
 
 /**
@@ -145,9 +159,9 @@ router.get("/CPU", function (req, res) {
     res.render("cpuinfo", { uso_cpu: uso_cpu });
 });
 
-router.post("/CPU",function(req,res){
+router.post("/CPU", function (req, res) {
 
-    res.send({uso_cpu: uso_cpu});
+    res.send({ uso_cpu: uso_cpu });
 });
 
 
