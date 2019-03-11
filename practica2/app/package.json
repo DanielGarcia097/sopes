@@ -23,6 +23,7 @@
     "ps-node": "^0.1.6",
     "socket.io": "^2.2.0",
     "stylus": "^0.54.5",
+    "terminate": "^2.1.2",
     "userid": "^0.3.1"
   }
 }
