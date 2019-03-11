@@ -89,10 +89,10 @@ getProcessData = function () {
             var state = estado.split('	')[1].split(' ');
             var id_user = user.split('	');
             var name = elems[0].split('	');
-            console.log("uid name is:", userid.username(parseInt(id_user[1])));
-            console.log(id_user[1]);
-            console.log("name process: " + name[1]);
-            console.log("PID: " + pid);
+            //console.log("uid name is:", userid.username(parseInt(id_user[1])));
+            //console.log(id_user[1]);
+            //console.log("name process: " + name[1]);
+            //console.log("PID: " + pid);
 
             /**
              * Cantidad de procesos según su estado:
