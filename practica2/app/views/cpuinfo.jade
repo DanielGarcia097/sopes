@@ -373,10 +373,13 @@ html(lang='en')
           .section__content.section__content--p30
             .container-fluid
               .row
-                .au-card.m-b-30
-                .au-card-inner
-                    h3.title-2.m-b-40#use_cpu #{data}
-                    #chart_div
+                .col-lg-6
+                  .au-card.m-b-30(style='width: 1000px; height: 600px')
+                    .au-card-inner
+                        h3.title-2.m-b-40%CPU Utilizado:
+                        h3.title-2.m-b-40#use_cpu %
+                        #chart_div(style='width: 900px; height: 450px')
+         
               .row
                 .col-md-12
                   .copyright
