@@ -225,7 +225,6 @@ for (var i = 0; i < largo_histograma; i++) {
 
 setInterval(function () {
     uso_mem = memStat.usedPercent();
-    console.log("PORCENTAJE DE MEMORIA: "+uso_mem);
     updateHistograma2(Math.round(uso_mem));
 }, 1000);
 
