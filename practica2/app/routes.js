@@ -164,7 +164,7 @@ router.get("/CPU", function (req, res) {
 
 router.post("/CPU", function (req, res) {
 
-    res.send({ uso_cpu: uso_cpu });
+    res.send({ uso_cpu: uso_cpu,  histograma: histograma });
 });
 
 
